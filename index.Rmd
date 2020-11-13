@@ -1,6 +1,6 @@
 ---
 title: "Strings and regex in R"
-subtitle: "https://github.com/ecodatasci-tlv/strings-and-regex"
+subtitle: "Maria Novosolov"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
@@ -68,7 +68,7 @@ Strings (character types) = pretty much anything surrounded by quotes
 
 Special characters that may have an alternate meaning
 
-In our previous case: is `"` literally a double-quote (choop-chik) or is it marking a character string?  
+In our previous case: is `"` literally a double-quote or is it marking a character string?  
 
 --
 
@@ -94,7 +94,9 @@ _You can also write emojis this way!_
 
 Character-encoding system of choice but not fully supported by Windows (yet); this is how you can write in Hebrew, English, Chinese, and emojis in one sentence
 
-Want to write in Hebrew? If regular Hebrew doesn't work, you can use the letter codes:
+It is also possible to use letter code to write non-Latin alphabet languages. For example:
+
+Hebrew with letter codes:
 
 ```{r}
 writeLines("\U05DB\U05EA\U05D1") 
@@ -274,10 +276,11 @@ and `str_view()` are your friends
 
 Other resources:
 
-- [regex101](https://regex101.com) - interepret regex
+- [regex101](https://regex101.com) - interpret regex
 - [regexplain](https://www.garrickadenbuie.com/project/regexplain/) - interpret and write regex (lots of cheatsheets)
 - [rex](https://github.com/kevinushey/rex) package - "friendly" regex
 - [rebus](https://cran.r-project.org/web/packages/rebus/rebus.pdf) package - "friendly" regex
+- [regexpal](https://www.regexpal.com/) - interpret regex
 
 ---
 
@@ -393,7 +396,7 @@ class: exercise
 
 class: inverse, center, middle
 
-# How to we say NOT?
+# How do we say NOT?
 
 ---
 
@@ -506,10 +509,23 @@ str_match(phone_numbers, "([0-9]+)[ -]([0-9]+)[ -]([0-9]+)")
 
 ---
 
+class: inverse, center, middle 
+ 
+Some more practice
+---
+str_extract("It does not do to dwell on dreams and forget to live.", )
+
+--
 ```{r}
 str_extract("It does not do to dwell on dreams and forget to live.",
             "(?<=and )[A-z]+") #<<
+```
 
+---
+
+str_extract("It does not do to dwell on dreams and forget to live.", )
+--
+```{r}
 str_extract("It does not do to dwell on dreams and forget to live.",
             "[A-z]+(?= and)") #<<
 ```

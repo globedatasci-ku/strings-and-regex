@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Strings and regex in R</title>
     <meta charset="utf-8" />
-    <meta name="date" content="2019-05-29" />
+    <meta name="date" content="2020-11-13" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="custom-fonts.css" type="text/css" />
   </head>
@@ -12,8 +12,8 @@
 class: center, middle, inverse, title-slide
 
 # Strings and regex in R
-## <a href="https://github.com/ecodatasci-tlv/strings-and-regex" class="uri">https://github.com/ecodatasci-tlv/strings-and-regex</a>
-### 2019-05-29
+## Maria Novosolov
+### 2020-11-13
 
 ---
 
@@ -67,7 +67,7 @@ Strings (character types) = pretty much anything surrounded by quotes
 
 Special characters that may have an alternate meaning
 
-In our previous case: is `"` literally a double-quote (choop-chik) or is it marking a character string?  
+In our previous case: is `"` literally a double-quote or is it marking a character string?  
 
 --
 
@@ -101,7 +101,9 @@ _You can also write emojis this way!_
 
 Character-encoding system of choice but not fully supported by Windows (yet); this is how you can write in Hebrew, English, Chinese, and emojis in one sentence
 
-Want to write in Hebrew? If regular Hebrew doesn't work, you can use the letter codes:
+It is also possible to use letter code to write non-Latin alphabet languages. For example:
+
+Hebrew with letter codes:
 
 
 ```r
@@ -366,10 +368,11 @@ and `str_view()` are your friends
 
 Other resources:
 
-- [regex101](https://regex101.com) - interepret regex
+- [regex101](https://regex101.com) - interpret regex
 - [regexplain](https://www.garrickadenbuie.com/project/regexplain/) - interpret and write regex (lots of cheatsheets)
 - [rex](https://github.com/kevinushey/rex) package - "friendly" regex
 - [rebus](https://cran.r-project.org/web/packages/rebus/rebus.pdf) package - "friendly" regex
+- [regexpal](https://www.regexpal.com/) - interpret regex
 
 ---
 
@@ -490,7 +493,7 @@ class: exercise
 
 class: inverse, center, middle
 
-# How to we say NOT?
+# How do we say NOT?
 
 ---
 
@@ -596,13 +599,13 @@ spells %&gt;%
 
 ```
 ## # A tibble: 351 x 3
-##   incantation type  effect 
-##   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;  
-## 1 Accio       Charm summons
-## 2 Accio       Charm an     
-## 3 Accio       Charm object 
-## 4 Aguamenti   Charm shoots 
-## 5 Aguamenti   Charm water  
+##   incantation effect  type 
+##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;
+## 1 Accio       summons Charm
+## 2 Accio       an      Charm
+## 3 Accio       object  Charm
+## 4 Aguamenti   shoots  Charm
+## 5 Aguamenti   water   Charm
 ## # … with 346 more rows
 ```
 
@@ -678,6 +681,13 @@ str_match(phone_numbers, "([0-9]+)[ -]([0-9]+)[ -]([0-9]+)")
 
 ---
 
+class: inverse, center, middle 
+ 
+Some more practice
+---
+str_extract("It does not do to dwell on dreams and forget to live.", )
+
+--
 
 ```r
 str_extract("It does not do to dwell on dreams and forget to live.",
@@ -687,6 +697,11 @@ str_extract("It does not do to dwell on dreams and forget to live.",
 ```
 ## [1] "forget"
 ```
+
+---
+
+str_extract("It does not do to dwell on dreams and forget to live.", )
+--
 
 ```r
 str_extract("It does not do to dwell on dreams and forget to live.",
@@ -793,9 +808,25 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
-
-<script>
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
 (function() {
   var links = document.getElementsByTagName('a');
   for (var i = 0; i < links.length; i++) {
@@ -804,7 +835,23 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
   }
 })();
-</script>
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 slideshow._releaseMath = function(el) {
