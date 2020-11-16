@@ -1,0 +1,120 @@
+---
+title: "Strings and regex in R answers"
+subtitle: "Maria Novosolov"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["default", "custom-fonts.css"]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      ratio: '16:9'
+      beforeInit: "https://platform.twitter.com/widgets.js"
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+---
+  
+  class: exercise
+
+# Guess the regex
+
+.center[.xlarge[any vowel]]
+
+--
+  
+  .center[.xlarge[`[aeiou]`]]
+
+---
+  
+  class: exercise
+
+# Guess the regex
+
+.center[.xlarge[starts with a capital letter]]
+
+--
+  
+  .center[.xlarge[`^[A-Z]`]]
+
+---
+  
+  class: exercise
+
+# Guess the regex
+
+.center[.xlarge[a vowel and the two characters next to it]]
+
+--
+  
+  .center[.xlarge[`.[aeiou].`]]
+
+---
+  
+  
+  
+  ---
+  
+  class: exercise
+
+# Guess the regex
+
+.center[.xlarge[at least one number]]
+
+--
+  
+  .center[.xlarge[`[0-9]+`]]
+
+---
+  
+  class: exercise
+
+# Guess the regex
+
+.center[.xlarge[ends with `jpg` or `jpeg`]]
+
+--
+  
+  .center[.xlarge[`jp[e]{0,1}g`]]
+
+
+---
+  
+  class: exercise
+
+# Guess the regex
+
+.center[.xlarge[at least 2 #s in a row]]
+--
+                  
+.center[.xlarge[`[0-9]{2,}`]]
+
+---
+
+class: inverse, center, middle 
+ 
+Some more practice
+---
+str_extract("It does not do to dwell on dreams and forget to live.", )
+
+--
+```{r}
+str_extract("It does not do to dwell on dreams and forget to live.",
+            "(?<=and )[A-z]+") #<<
+```
+
+---
+
+str_extract("It does not do to dwell on dreams and forget to live.", )
+--
+```{r}
+str_extract("It does not do to dwell on dreams and forget to live.",
+            "[A-z]+(?= and)") #<<
+```
+
+                  
